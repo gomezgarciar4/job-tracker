@@ -1,6 +1,47 @@
 @JobTracker.Api_HostAddress = http://localhost:5130
 
-GET {{JobTracker.Api_HostAddress}}/weatherforecast/
+### Get all offers
+GET {{JobTracker.Api_HostAddress}}/api/offers
 Accept: application/json
 
-###
+### Get all offers filtered by status
+GET {{JobTracker.Api_HostAddress}}/api/offers?status=Pending
+Accept: application/json
+
+### Get offer by id
+GET {{JobTracker.Api_HostAddress}}/api/offers/1
+Accept: application/json
+
+### Create offer
+POST {{JobTracker.Api_HostAddress}}/api/offers
+Content-Type: application/json
+
+{
+  "company": "Google",
+  "position": "Software Engineer",
+  "url": "https://careers.google.com/jobs/123",
+  "notes": "Applied via referral"
+}
+
+### Update offer
+PUT {{JobTracker.Api_HostAddress}}/api/offers/1
+Content-Type: application/json
+
+{
+  "company": "Google",
+  "position": "Senior Software Engineer",
+  "url": "https://careers.google.com/jobs/123",
+  "notes": "Updated position",
+  "status": "Interview"
+}
+
+### Update offer status
+PATCH {{JobTracker.Api_HostAddress}}/api/offers/1/status
+Content-Type: application/json
+
+{
+  "status": "Accepted"
+}
+
+### Delete offer
+DELETE {{JobTracker.Api_HostAddress}}/api/offers/1
